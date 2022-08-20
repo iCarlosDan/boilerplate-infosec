@@ -1,51 +1,14 @@
 const express = require('express');
 const app = express();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let helmet = require('helmet')
+var timeInSeconds = 90*24*60*60;
+app.use(helmet())
+app.use(helmet.noCache())
+app.use(helmet.contentSecurityPolicy({directives: {
+  defaultSrc: ["'self'"],
+  scriptSrc: ["'self'", "trusted-cdn.com"]
+}}))
 
 module.exports = app;
 const api = require('./server.js');
